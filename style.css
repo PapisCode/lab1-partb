@@ -1,0 +1,7 @@
+:root { font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; }
+body {margin: 0; line-height: 1.5; }
+header { padding: 1rem; background: #f5f5f5; border-bottom: 1px solid#ddd; }
+nav a { margin-right: .75rem; text-decoration: none; }
+nav a [aria-current="page"] {font-weight: 700; }
+main { padding: 1 rem; }
+footer { border-top: 1px solid#ddd; padding: 1rem; text-align: center; background: #fafafa; }
