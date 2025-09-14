@@ -6,8 +6,11 @@ const PORT = 4000;
 
 const routes = {
     '/': {file: 'index.html', type: 'text/html; charset=utf-8' },
+    '/index.html': {file: 'index.html', type: 'text/html; charset=utf-8' },
     '/about': {file: 'about.html', type: 'text/html; charset=utf-8' },
+    '/about.html': {file: 'about.html', type: 'text/html; charset=utf-8' },
     '/contact': {file: 'contact.html', type: 'text/html; charset=utf-8' },
+    '/contact.html': {file: 'contact.html', type: 'text/html; charset=utf-8 '},
     '/style.css': { file: 'style.css', type: 'text/css; charset=utf-8' },
 };
 
