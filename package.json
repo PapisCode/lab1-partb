@@ -1,22 +1,26 @@
 {
   "name": "lab1-partb",
   "version": "1.0.0",
-  "description": "",
+  "description": "CPAN 227 Lab 1 Part B - Basic HTTP server using Node core modules",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
+  "keywords": ["node", "http", "fs", "lab1", "cpan227", "humber"],
+  "author": "Gabriel Hernandez",
+  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PapisCode/lab1-partb.git"
+    "url": "https://github.com/PapisCode/lab1-partb.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/PapisCode/lab1-partb/issues"
   },
-  "homepage": "https://github.com/PapisCode/lab1-partb#readme"
+  "homepage": "https://github.com/PapisCode/lab1-partb#readme",
+  "engines": {
+    "node": ">=18"
+  }
 }
+
+
