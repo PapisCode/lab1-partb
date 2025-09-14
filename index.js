@@ -27,7 +27,7 @@ function serveFile(res, filePath, contentType, statusCode = 200) {
 
 const server = http.createServer((req, res) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-    const url = req.url.split('?')[0].replace(/\/+$/. '') || '/';
+    const url = req.url.split('?')[0].replace(/\/+$/, '') || '/';
 
     if (routes[url]) {
         const { file, type } = routes[url];
