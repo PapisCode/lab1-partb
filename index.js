@@ -6,20 +6,29 @@ const PORT = 4000;
 
 const routes = {
     '/': {file: 'index.html', type: 'text/html; charset=utf-8' },
-    '/ about': {file: 'about.html', type: 'text/html; charset=utf-8' },
+    '/about': {file: 'about.html', type: 'text/html; charset=utf-8' },
     '/contact': {file: 'contact.html', type: 'text/html; charset=utf-8' },
     '/style.css': { file: 'style.css', type: 'text/css; charset=utf-8' },
 };
 
-function serveFile(res, filePath, contentType, statusCode = 200) {
+function serverNotFound(res) {
+    fs.readFile(path.join(__dirname, '404.html'), 'utf8', (e, html) => {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.end(e ? '404 Not Found ' : html);
+    });
+}
+
+function serveFile(res, filePath, contentType) {
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
+            if (err.code === 'ENOENT') return serverNotFound(res); // missing file => 404
             res.statusCode = 500;
             res.setHeader('Content-Type', 'text/plain; charset=utf-8');
             res.end('Internal Server Error');
             return;
         }
-        res.statusCode = statusCode;
+        res.statusCode = 200;
         res.setHeader('Content-Type', contentType);
         res.end(data);
     });
@@ -31,12 +40,11 @@ const server = http.createServer((req, res) => {
 
     if (routes[url]) {
         const { file, type } = routes[url];
-        const filePath = path.join(__dirname, file);
-        return serveFile(res, filePath, type, 200);
+        return serveFile(res, path.join(__dirname, file), type);
     }
 
-    // 404
-    serveFile(res, path.join(dirname, '404.html'), 'text/html; charset=utf-8', 404);
+    // Unkown route -> 404 page
+    serverNotFound(res);
 });
 
 server.listen(PORT, () => {
