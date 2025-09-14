@@ -15,7 +15,8 @@ const routes = {
 };
 
 function serverNotFound(res) {
-    fs.readFile(path.join(__dirname, '404.html'), 'utf8', (e, html) => {
+    const notFound = path.join(__dirname, '404.html');
+    fs.readFile(notFound, 'utf8', (e, html) => {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/html; charset=utf-8');
         res.end(e ? '404 Not Found ' : html);
