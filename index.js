@@ -14,7 +14,7 @@ const routes = {
     '/style.css': { file: 'style.css', type: 'text/css; charset=utf-8' },
 };
 
-function serverNotFound(res) {
+function serveNotFound(res) {
     const notFound = path.join(__dirname, '404.html');
     fs.readFile(notFound, 'utf8', (e, html) => {
         res.statusCode = 404;
@@ -26,7 +26,7 @@ function serverNotFound(res) {
 function serveFile(res, filePath, contentType) {
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
-            if (err.code === 'ENOENT') return serverNotFound(res); // missing file => 404
+            if (err.code === 'ENOENT') return serveNotFound(res); // missing file => 404
             res.statusCode = 500;
             res.setHeader('Content-Type', 'text/plain; charset=utf-8');
             res.end('Internal Server Error');
@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
     }
 
     // Unkown route -> 404 page
-    serverNotFound(res);
+    serveNotFound(res);
 });
 
 server.listen(PORT, () => {
